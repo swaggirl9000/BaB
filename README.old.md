@@ -1,2 +1,0 @@
-# BaB
-Personal Project 
