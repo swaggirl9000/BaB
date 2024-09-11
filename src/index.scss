@@ -1,0 +1,98 @@
+$primary: #ff69b4;
+$accent: rgb(250, 198, 246);
+$bg: #fae8ec;
+$bg-accent: #eba7b7;
+$disabled: #e08298;
+$foreground: #000000;  
+
+body {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(0deg, $primary 0.03%, $accent);
+    color: $foreground;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 30px;
+    height: 100vh;
+}
+.quiz-container {
+    width: 500px;
+    background: $bg;
+    border-radius: 4px;
+    margin-top: 100px;
+    padding: 30px 60px;
+    box-sizing: border-box;
+
+    .current-question-no {
+        font-size: 32px;
+        font-weight: 500;
+        color: $primary
+    }
+
+    h2 {
+        font-size: 32px;
+        font-weight: 500px;
+        margin: 0;
+    }
+
+    ul {
+        margin-top: 30px;
+        margin-left: -40px;
+
+        li {
+            text-decoration: none;
+            list-style: none;
+            color: $foreground;
+            font-size: 20px;
+            background: $bg;
+            border: 1px solid $disabled;
+            border-radius: 16px;
+            padding: 11px;
+            margin-top: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+            text-align: center;
+        }
+
+        .selected-answer {
+            background: $primary;
+            border: 1px solid $accent;
+            color: $bg;
+        }
+    }
+
+    .footer {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            width: 120px; 
+            height: 40px; 
+            background-color: #ff69b4; 
+            border: none;
+            border-radius: 8px; 
+            cursor: pointer;
+            outline: none;
+            color: #fff; 
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            transition: background-color 0.3s ease; 
+        
+            &:hover {
+                background-color: #ff1493; 
+            }
+        
+            &:disabled {
+                background-color: #d3d3d3; 
+                cursor: not-allowed;
+            }
+        }
+    }
+    
+}
