@@ -94,5 +94,45 @@ body {
             }
         }
     }
+
+    .home-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-image: url("/heart_bg.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 5rem;
+            color:#ff69b4;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+
+        .start-button {
+            width: 150px;
+            height: 50px;
+            background-color: #ff69b4;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
     
+            &:hover {
+                background-color: #ff1493;
+            }
+        }
+    }
 }
