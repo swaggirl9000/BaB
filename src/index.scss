@@ -5,6 +5,8 @@ $bg-accent: #eba7b7;
 $disabled: #e08298;
 $foreground: #000000;  
 
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 body {
     font-family: 'Playfair Display', serif;
     background: linear-gradient(0deg, $primary 0.03%, $accent);
@@ -94,45 +96,51 @@ body {
             }
         }
     }
+}
 
-    .home-screen {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-image: url("/heart_bg.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        text-align: center;
+.home-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url("/images/heart_bg.jpg");
+    background-size: 80px 60px, cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    z-index: -1;
+    text-align: center;
 
-        h1 {
-            font-family: 'Pacifico', cursive;
-            font-size: 5rem;
-            color:#ff69b4;
-            margin-bottom: 20px;
-        }
+    h1 {
+        font-family: 'Dancing Script', cursive;
+        font-size: 5rem;
+        color:#b62e72;
+        margin-bottom: 10px;
+    }
 
-        p {
-            font-size: 1.2rem;
-            margin: 20px 0;
-        }
+    p {
+        font-size: 1.5rem;
+        margin: 40px 0;
+        color:#d21d78;
+    }
 
-        .start-button {
-            width: 150px;
-            height: 50px;
-            background-color: #ff69b4;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: background-color 0.3s ease;
-    
-            &:hover {
-                background-color: #ff1493;
-            }
+    .start-button {
+        width: 150px;
+        height: 50px;
+        background-color: #ff69b4;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #ff1493;
         }
     }
 }
