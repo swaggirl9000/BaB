@@ -1,6 +1,8 @@
+import { useRouter } from "next/react";
 import { useState } from "react";
 
 const Quiz = ({ questions }) => {
+    const router = useRouter();
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [optionIndex, setOptionIndex] = useState(null);
     const { question, options} = questions[currentQuestion];
@@ -8,7 +10,6 @@ const Quiz = ({ questions }) => {
     const [userAnswers, setUserAnswers] = useState([]);
     // when quiz is done
     const [quizOver, setQuizOver] = useState(false)
-    const [chatbotResponse, setChatbotResponse] = useState(false)
 
     const onAnswerClick = (option, index) => {
         setOptionIndex(index);
@@ -21,6 +22,7 @@ const Quiz = ({ questions }) => {
         const updatedAnswers = [...userAnswers];
         updatedAnswers[currentQuestion] = {
             questionId: questions[currentQuestion].id,
+            category: questions[currentQuestion].category,
             option: questions[currentQuestion].options[optionIndex],
         };
         setUserAnswers(updatedAnswers);
@@ -31,6 +33,35 @@ const Quiz = ({ questions }) => {
         } else { //reset
             setCurrentQuestion(0);
             setQuizOver(true);
+        }
+    };
+
+    const handleQuizCompletion = (answers) => {
+        const physical = answers.filter(answer => answer.category === "Physical Appearence");
+        const personality = answers.filter(answer => answer.category === "Personality Traits");   
+
+        // send to chatbot
+        sendToChatbotAPI(personality);
+    };
+
+    const sendToChatbotAPI = async (personalityData) => {
+        try {
+            const response = await fetch("/apli/generate-chatbot",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({personalityData}),
+            });
+            const chatbot = await response.json();
+            console.log("Generated:", chatbot);
+
+            router.push({
+                pathname: "/chatbot",
+                query: {chatbotData: JSON.stringify(chatbot)},
+            });
+        } catch (error) {
+            console.error("Error generating chatbot:", error);
         }
     };
 
