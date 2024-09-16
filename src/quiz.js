@@ -8,6 +8,7 @@ const Quiz = ({ questions }) => {
     const [userAnswers, setUserAnswers] = useState([]);
     // when quiz is done
     const [quizOver, setQuizOver] = useState(false)
+    const [chatbotResponse, setChatbotResponse] = useState(false)
 
     const onAnswerClick = (option, index) => {
         setOptionIndex(index);
