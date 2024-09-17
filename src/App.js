@@ -11,7 +11,7 @@ function App() {
   };
 
 
-  return (<div className="app-contianer">
+  return (<div className="app-container">
     {start ? (
       <Quiz questions={questions} />
     ) : (

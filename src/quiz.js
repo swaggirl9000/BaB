@@ -1,4 +1,4 @@
-import { useRouter } from "next/react";
+import { useRouter } from "react";
 import { useState } from "react";
 
 const Quiz = ({ questions }) => {
@@ -46,7 +46,7 @@ const Quiz = ({ questions }) => {
 
     const sendToChatbotAPI = async (personalityData) => {
         try {
-            const response = await fetch("/apli/generate-chatbot",{
+            const response = await fetch("/api/generate-chatbot", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -10,7 +10,7 @@ const Chatbot = ({ chatbotData }) => {
     const handleUserMessage = (message) => {
         setChatHistory([...chatHistory, {user: true, text: message}]);
 
-        fetch("/api/chatbot-respone", {
+        fetch("/api/chatbot-response", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
