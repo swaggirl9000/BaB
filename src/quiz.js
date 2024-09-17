@@ -89,13 +89,15 @@ const Quiz = ({ questions }) => {
                     {currentQuestion === questions.length - 1 ? "All done!": "Next..."}
                 </button>
             </div>
-        </>) : <div className="quiz-over">
-            <h3>
-                We're finding the perfect guy right now!
-            </h3>
-            </div>} 
-
-    </div>);
+        </>) : (
+            <div className="quiz-over">
+                <h3>
+                    We're finding the perfect guy right now!
+                </h3>
+            </div>
+        )} 
+        </div>
+    );
 };
 
 //Line 60 is next stage
