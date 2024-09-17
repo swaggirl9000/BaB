@@ -17,6 +17,7 @@ body {
     padding: 0 30px;
     height: 100vh;
 }
+
 .quiz-container {
     width: 500px;
     background: $bg;
@@ -111,21 +112,23 @@ body {
     height: 100vh;
     background-size: cover;
     position: absolute;
-    left: 0; right: 0; top: 0; bottom: 0;
-    z-index: -1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     text-align: center;
 
     h1 {
         font-family: 'Dancing Script', cursive;
         font-size: 5rem;
-        color:#b62e72;
+        color: #b62e72;
         margin-bottom: 10px;
     }
 
     p {
         font-size: 1.5rem;
         margin: 40px 0;
-        color:#d21d78;
+        color: #d21d78;
     }
 
     .start-button {
@@ -138,10 +141,10 @@ body {
         cursor: pointer;
         font-size: 1.2rem;
         transition: background-color 0.3s ease;
+    }
 
-        &:hover {
-            background-color: #ff1493;
-        }
+    .start-button:hover {
+        background-color: #ff1493;
     }
 }
 

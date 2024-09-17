@@ -1,24 +1,20 @@
-import { useRouter } from "react";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Quiz = ({ questions }) => {
-    const router = useRouter();
+    const navigate = useNavigate();
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [optionIndex, setOptionIndex] = useState(null);
-    const { question, options} = questions[currentQuestion];
-    // save answers for moodel
     const [userAnswers, setUserAnswers] = useState([]);
-    // when quiz is done
-    const [quizOver, setQuizOver] = useState(false)
+    const [quizOver, setQuizOver] = useState(false);
+    const { question, options } = questions[currentQuestion];
 
     const onAnswerClick = (option, index) => {
         setOptionIndex(index);
-    }
+    };
 
     const onClickNext = () => {
         setOptionIndex(null);
-
-        // save answer to pass into model
         const updatedAnswers = [...userAnswers];
         updatedAnswers[currentQuestion] = {
             questionId: questions[currentQuestion].id,
@@ -26,21 +22,17 @@ const Quiz = ({ questions }) => {
             option: questions[currentQuestion].options[optionIndex],
         };
         setUserAnswers(updatedAnswers);
-        console.log("Updated answers:", updatedAnswers);
 
-        if(currentQuestion !== questions.length -1) {
+        if (currentQuestion !== questions.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
-        } else { //reset
-            setCurrentQuestion(0);
+        } else {
             setQuizOver(true);
+            handleQuizCompletion(updatedAnswers);
         }
     };
 
     const handleQuizCompletion = (answers) => {
-        const physical = answers.filter(answer => answer.category === "Physical Appearence");
-        const personality = answers.filter(answer => answer.category === "Personality Traits");   
-
-        // send to chatbot
+        const personality = answers.filter(answer => answer.category === "Personality Traits");
         sendToChatbotAPI(personality);
     };
 
@@ -51,15 +43,10 @@ const Quiz = ({ questions }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({personalityData}),
+                body: JSON.stringify({ personalityData }),
             });
             const chatbot = await response.json();
-            console.log("Generated:", chatbot);
-
-            router.push({
-                pathname: "/chatbot",
-                query: {chatbotData: JSON.stringify(chatbot)},
-            });
+            navigate("/chatbot", { state: { chatbotData: chatbot } });
         } catch (error) {
             console.error("Error generating chatbot:", error);
         }
@@ -69,8 +56,6 @@ const Quiz = ({ questions }) => {
         <div className="quiz-container">
             {!quizOver ? (
                 <>
-                    <span className="current-question-no">{currentQuestion + 1}</span>
-                    <span className="total-questions">/{questions.length}</span>
                     <h2>{question}</h2>
                     <ul>
                         {options.map((option, index) => (
@@ -83,16 +68,12 @@ const Quiz = ({ questions }) => {
                             </li>
                         ))}
                     </ul>
-                    <div className="footer">
-                        <button onClick={onClickNext} disabled={optionIndex === null}>
-                            {currentQuestion === questions.length - 1 ? "All done!" : "Next..."}
-                        </button>
-                    </div>
+                    <button onClick={onClickNext} disabled={optionIndex === null}>
+                        {currentQuestion === questions.length - 1 ? "All done!" : "Next..."}
+                    </button>
                 </>
             ) : (
-                <div className="quiz-over">
-                    <h3>We're finding the perfect guy right now!</h3>
-                </div>
+                <h3>We're finding the perfect guy right now!</h3>
             )}
         </div>
     );
