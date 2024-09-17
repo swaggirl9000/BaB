@@ -66,39 +66,36 @@ const Quiz = ({ questions }) => {
     };
 
     return (
-    <div className="quiz-container">
-        {!quizOver ? ( <>
-            <span className="current-question-no">{currentQuestion + 1}</span>
-            <span className="total-questions">/{questions.length}</span>
-            <h2>{question}</h2>
-            <ul>
-                {
-                    options.map((option, index) => (
-                    <li 
-                        onClick={() => onAnswerClick(option, index)}
-                        key={option}
-                        className={optionIndex === index ? 'selected-answer' : null}
-                        >
-                            {option}
-                    </li>      
-                    ))        
-                }
-            </ul>
-            <div className="footer">
-                <button onClick= {onClickNext} disabled={optionIndex === null}>
-                    {currentQuestion === questions.length - 1 ? "All done!": "Next..."}
-                </button>
-            </div>
-        </>) : (
-            <div className="quiz-over">
-                <h3>
-                    We're finding the perfect guy right now!
-                </h3>
-            </div>
-        )} 
+        <div className="quiz-container">
+            {!quizOver ? (
+                <>
+                    <span className="current-question-no">{currentQuestion + 1}</span>
+                    <span className="total-questions">/{questions.length}</span>
+                    <h2>{question}</h2>
+                    <ul>
+                        {options.map((option, index) => (
+                            <li
+                                onClick={() => onAnswerClick(option, index)}
+                                key={option}
+                                className={optionIndex === index ? 'selected-answer' : ''}
+                            >
+                                {option}
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="footer">
+                        <button onClick={onClickNext} disabled={optionIndex === null}>
+                            {currentQuestion === questions.length - 1 ? "All done!" : "Next..."}
+                        </button>
+                    </div>
+                </>
+            ) : (
+                <div className="quiz-over">
+                    <h3>We're finding the perfect guy right now!</h3>
+                </div>
+            )}
         </div>
     );
 };
 
-//Line 60 is next stage
 export default Quiz;
